@@ -350,6 +350,9 @@ namespace MXBikesSetupDuperWPF
 
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
+            if (cbTargetTrack.SelectedItem == null)
+                return;
+
             ContentDialogResult result;
             string targetDest, targetTrack, targetBike;
 
