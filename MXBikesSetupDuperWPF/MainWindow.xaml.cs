@@ -201,7 +201,11 @@ namespace MXBikesSetupDuperWPF
             }
 
             // continue with tracks
-            tracks = new DirectoryInfo(profileSetupsDir).EnumerateDirectories().OrderBy(f => f.LastWriteTime).ThenBy(f => f.Name).Select(f => f.FullName).ToArray();
+            tracks = new DirectoryInfo(profileSetupsDir)
+                .EnumerateDirectories()
+                .OrderBy(d => Directory.GetLastWriteTime(d.FullName))
+                .Select(d => Path.GetFileName(d.FullName))
+                .ToArray();
 
             // check if saved setups found
             if (tracks.Length == 0)
@@ -216,11 +220,10 @@ namespace MXBikesSetupDuperWPF
 
             foreach (string track in tracks.Reverse())
             {
-                cbSourceTrack.Items.Add(Path.GetFileName(track));
+                cbSourceTrack.Items.Add(track);
             }
             cbTargetTrack.ItemsSource = tracks
                 .OrderBy(x => x)
-                .Select(x => Path.GetFileName(x))
                 .ToList();
 
             cbSourceTrack.SelectedIndex = 0;
