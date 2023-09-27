@@ -17,7 +17,7 @@
                         <StackPanel>
                             <UniformGrid x:Name="panel_source" Rows="2" Columns="2" >
                                 <StackPanel x:Name="panel_profile" Margin="0,0,5,10">
-                                    <Label x:Name="label" Content="Select Profile" Margin="0,0,0,10"/>
+                                    <Label x:Name="label" Content="Select Profile test 1234" Margin="0,0,0,10"/>
                                     <ComboBox x:Name="sourceProfile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                 </StackPanel>
                                 <StackPanel x:Name="panel_source_track" VerticalAlignment="Center" Margin="5,0,0,10">
