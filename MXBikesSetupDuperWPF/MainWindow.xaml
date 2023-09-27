@@ -5,15 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MXBikesSetupDuperWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="480" Width="800"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
-    <DockPanel>
-        <ListBox x:Name="listBox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="150" Margin="0,0,12,0"/>
-        <ui:SimpleStackPanel Spacing="24">
-            <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
-            <Button Content="I am a button" />
-            <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
-        </ui:SimpleStackPanel>
-    </DockPanel>
+    <Grid x:Name="main">
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,0">
+            <TabItem Header="Duper" Width="100">
+                <ui:SimpleStackPanel x:Name="duper" Spacing="24">
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="MX Bikes Setup Duper"/></TextBlock>
+                    <Border BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5">
+                        <StackPanel>
+                            <UniformGrid x:Name="panel_source" Rows="2" Columns="2" >
+                                <StackPanel x:Name="panel_profile" Margin="0,0,5,10">
+                                    <Label x:Name="label" Content="Select Profile" Margin="0,0,0,10"/>
+                                    <ComboBox x:Name="sourceProfile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </StackPanel>
+                                <StackPanel x:Name="panel_source_track" VerticalAlignment="Center" Margin="5,0,0,10">
+                                    <Label x:Name="label2" Content="Select Source Track" Margin="0,0,0,10"/>
+                                    <ComboBox x:Name="sourceTrack" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,5,0">
+                                    <Label x:Name="label3" Content="Select Bike" Margin="0,0,0,10"/>
+                                    <ComboBox x:Name="sourceBike" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                                <StackPanel Margin="5,0,0,0">
+                                    <Label x:Name="label4" Content="Select Setup" Margin="0,0,0,10"/>
+                                    <ComboBox x:Name="sourceSetup" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                </StackPanel>
+                            </UniformGrid>
+                            <StackPanel x:Name="panel_setup_info" IsEnabled="False" HorizontalAlignment="Right" Width="325">
+                                <Label x:Name="label6" Content="Setup Info" Margin="0,0,0,10"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Created:&#xD;&#xA;Last Changed:" Width="100"/>
+                                    <Label x:Name="lblSetupInfo" Content=""/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5">
+                        <DockPanel>
+                            <StackPanel Orientation="Vertical" Margin="0,0,10,0" Width="150">
+                                <Label x:Name="label5" Content="Copy Mode" Margin="0,0,0,10"/>
+                                <RadioButton x:Name="rdSpecificTrack" Content="Specific Track" HorizontalAlignment="Stretch"/>
+                                <RadioButton x:Name="rdAllTracks" Content="All Tracks" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="325">
+                                <Label x:Name="label7" Content="Select Target Track" Margin="0,0,0,10"/>
+                                <ComboBox x:Name="targetTrack" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="10,0,0,0">
+                                <Label x:Name="label8" Content="Action" Margin="0,0,0,10"/>
+                                <Button x:Name="btnCopy" Content="Copy" HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                </ui:SimpleStackPanel>
+            </TabItem>
+            <TabItem Header="Info">
+                <ui:SimpleStackPanel x:Name="info" Spacing="24">
+                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="Information"/></TextBlock>
+                    <Label x:Name="label1" Content="This app was brought to you by insane (dmkrtz)" VerticalAlignment="Center"/>
+                </ui:SimpleStackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>
