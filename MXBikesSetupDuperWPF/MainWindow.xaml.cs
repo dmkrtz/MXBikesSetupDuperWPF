@@ -190,6 +190,8 @@ namespace MXBikesSetupDuperWPF
             cbTargetTrack.IsEnabled = false;
             cbSourceBike.Items.Clear();
             cbSourceBike.IsEnabled = false;
+            cbSourceSetup.Items.Clear();
+            cbSourceSetup.IsEnabled = false;
             lblSetupInfo.Content = "";
 
             // check if has setups folder
@@ -305,6 +307,12 @@ namespace MXBikesSetupDuperWPF
         private void cbSourceSetup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var thisCb = (sender as ComboBox);
+
+            if (thisCb.Items.Count == 0)
+                targetPanel.IsEnabled = false;
+            else
+                targetPanel.IsEnabled = true;
+
             if (thisCb.SelectedItem == null)
                 return;
 
@@ -326,7 +334,8 @@ namespace MXBikesSetupDuperWPF
 
         private void rdSpecificTrack_Checked(object sender, RoutedEventArgs e)
         {
-            cbTargetTrack.IsEnabled = true;
+            if(cbTargetTrack.Items.Count > 0)
+                cbTargetTrack.IsEnabled = true;
         }
 
         private void rdAllTracks_Checked(object sender, RoutedEventArgs e)

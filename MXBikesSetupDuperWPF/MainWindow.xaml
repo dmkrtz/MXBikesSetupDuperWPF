@@ -10,7 +10,7 @@
         ui:WindowHelper.UseModernWindowStyle="True">
     <Grid x:Name="main">
         <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,0">
-            <TabItem Header="Duper" Width="100">
+            <TabItem Header="Duper" Width="100" HorizontalContentAlignment="Stretch">
                 <ui:SimpleStackPanel x:Name="duper" Spacing="24">
                     <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="MX Bikes Setup Duper"/></TextBlock>
                     <Border BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5">
@@ -41,7 +41,7 @@
                                 <Grid>
                                     <Button x:Name="btnReload" Content="Reload" VerticalAlignment="Bottom" Click="btnReload_Click"/>
                                 </Grid>
-                                <StackPanel x:Name="panel_setup_info" IsEnabled="False" HorizontalAlignment="Right" Width="325">
+                                <StackPanel x:Name="panel_setup_info" HorizontalAlignment="Right" Width="325">
                                     <Label x:Name="label6" Content="Setup Info" Margin="0,0,0,10"/>
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="Created:&#xA;Last Changed:" Width="100"/>
@@ -51,7 +51,7 @@
                             </UniformGrid>
                         </StackPanel>
                     </Border>
-                    <Border BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5">
+                    <Border x:Name="targetPanel" BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5" IsEnabled="False">
                         <DockPanel>
                             <StackPanel Orientation="Vertical" Margin="0,0,10,0" Width="150">
                                 <Label x:Name="label5" Content="Copy Mode" Margin="0,0,0,10"/>
