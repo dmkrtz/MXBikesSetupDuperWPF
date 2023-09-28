@@ -73,14 +73,16 @@ namespace MXBikesSetupDuperWPF
 
     public partial class MainWindow : Window
     {
-        string 
-            modsFolder, 
-            pibosoDir, 
-            profilesDir, 
+        string
+            modsFolder,
+            pibosoDir,
+            profilesDir,
             selectedProfileDir, profileSetupsDir,
             selectedTrack, selectedTrackDir,
             selectedBike, selectedBikeDir,
             selectedSetup, selectedSetupPath;
+
+        string displayableVersion = "";
 
         int copyType;
         string[] tracks;
@@ -89,6 +91,11 @@ namespace MXBikesSetupDuperWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            DateTime buildDate = new DateTime(2000, 1, 1)
+                                    .AddDays(version.Build).AddSeconds(version.Revision * 2);
+            displayableVersion = $"{version} ({buildDate})";
 
             initPiboso();
         }
@@ -155,6 +162,16 @@ namespace MXBikesSetupDuperWPF
             }
 
             cbSourceProfile.Text = $"{cbSourceProfile.Items.Count.ToString()} profiles found, choose one";
+        }
+
+        private void label2_Initialized(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label2_Loaded(object sender, RoutedEventArgs e)
+        {
+            label2.Content = $"Version: {displayableVersion}";
         }
 
         void kill()

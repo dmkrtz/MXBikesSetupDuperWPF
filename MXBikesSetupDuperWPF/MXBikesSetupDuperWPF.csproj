@@ -5,10 +5,28 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <SignAssembly>False</SignAssembly>
+    <Authors>dmkrtz</Authors>
+    <Product>MX Bikes Setup Duper</Product>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>0.1.*</AssemblyVersion>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="logo_2021_512.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="mxbsd.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo_2021_512.png" />
   </ItemGroup>
 
 </Project>

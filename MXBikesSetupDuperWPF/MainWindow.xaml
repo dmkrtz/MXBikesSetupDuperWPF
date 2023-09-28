@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MXBikesSetupDuperWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800"
+        Title="MX Bikes Setup Duper" Height="485" Width="800"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        ui:WindowHelper.UseModernWindowStyle="True" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+        UseLayoutRounding="true">
     <Grid x:Name="main">
-        <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,0">
+        <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,5">
             <TabItem Header="Duper" Width="100" HorizontalContentAlignment="Stretch">
                 <ui:SimpleStackPanel x:Name="duper" Spacing="24">
                     <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="MX Bikes Setup Duper"/></TextBlock>
@@ -71,10 +72,14 @@
                 </ui:SimpleStackPanel>
             </TabItem>
             <TabItem Header="Info">
-                <ui:SimpleStackPanel x:Name="info" Spacing="24">
-                    <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="Information"/></TextBlock>
-                    <Label x:Name="label1" Content="This app was brought to you by insane (dmkrtz)" VerticalAlignment="Center"/>
-                </ui:SimpleStackPanel>
+                <DockPanel>
+                    <ui:SimpleStackPanel x:Name="info" Spacing="24" DockPanel.Dock="Top">
+                        <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="Information"/></TextBlock>
+                        <Label x:Name="label1" Content="This app was brought to you by insane (dmkrtz)" VerticalAlignment="Center"/>
+                        <Image x:Name="image" Height="100" Width="100" Source="/logo_2021_512.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ui:SimpleStackPanel>
+                    <Label x:Name="label2" Content="Version: " Initialized="label2_Initialized" Loaded="label2_Loaded" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                </DockPanel>
             </TabItem>
         </TabControl>
     </Grid>
