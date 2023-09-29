@@ -136,7 +136,7 @@ namespace MXBikesSetupDuperWPF
             Version version = Assembly.GetExecutingAssembly().GetName().Version;
             DateTime buildDate = new DateTime(2000, 1, 1)
                                     .AddDays(version.Build).AddSeconds(version.Revision * 2);
-            displayableVersion = $"{version} ({buildDate})";
+            displayableVersion = $"{version}";
 
             CheckForUpdates(version.ToString());
 
@@ -227,19 +227,14 @@ namespace MXBikesSetupDuperWPF
             cbSourceProfile.Text = $"{cbSourceProfile.Items.Count.ToString()} profiles found, choose one";
         }
 
-        private void label2_Initialized(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Loaded(object sender, RoutedEventArgs e)
-        {
-            label2.Content = $"Version: {displayableVersion}";
-        }
-
         private void btnGetLatestVersion_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer", "https://github.com/dmkrtz/MXBikesSetupDuperWPF/releases/latest");
+        }
+
+        private void lblVersion_Loaded(object sender, RoutedEventArgs e)
+        {
+            lblVersion.Text = displayableVersion;
         }
 
         void kill()
