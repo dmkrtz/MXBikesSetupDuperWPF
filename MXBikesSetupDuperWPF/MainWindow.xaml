@@ -11,8 +11,8 @@
         UseLayoutRounding="true">
     <Grid x:Name="main">
         <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,5">
-            <TabItem Header="Duper" Width="100" HorizontalContentAlignment="Stretch">
-                <ui:SimpleStackPanel x:Name="duper" Spacing="24">
+            <TabItem x:Name="duper" Header="Duper" Width="100" HorizontalContentAlignment="Stretch">
+                <ui:SimpleStackPanel Spacing="24">
                     <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="MX Bikes Setup Duper"/></TextBlock>
                     <Border BorderThickness="1,1,1,1" CornerRadius="10,10,10,10" BorderBrush="#FF8C8C8C" Padding="5,5,5,5">
                         <StackPanel>
@@ -71,14 +71,18 @@
                     </Border>
                 </ui:SimpleStackPanel>
             </TabItem>
-            <TabItem Header="Info">
+            <TabItem x:Name="info" Header="Info">
                 <DockPanel>
-                    <ui:SimpleStackPanel x:Name="info" Spacing="24" DockPanel.Dock="Top">
+                    <ui:SimpleStackPanel Spacing="24" DockPanel.Dock="Top">
                         <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="Information"/></TextBlock>
                         <Label x:Name="label1" Content="This app was brought to you by insane (dmkrtz)" VerticalAlignment="Center"/>
                         <Image x:Name="image" Height="100" Width="100" Source="/logo_2021_512.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ui:SimpleStackPanel>
-                    <Label x:Name="label2" Content="Version: " Initialized="label2_Initialized" Loaded="label2_Loaded" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                        <Label x:Name="label2" Content="Version: " Initialized="label2_Initialized" Loaded="label2_Loaded" VerticalAlignment="Bottom"/>
+                        <Button x:Name="btnGetLatestVersion" Content="Get latest version" Margin="5,0,0,0" Click="btnGetLatestVersion_Click"/>
+
+                    </StackPanel>
                 </DockPanel>
             </TabItem>
         </TabControl>

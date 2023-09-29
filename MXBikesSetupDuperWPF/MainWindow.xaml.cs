@@ -20,6 +20,47 @@ using System.Diagnostics;
 using Path = System.IO.Path;
 using System.Windows.Controls.Primitives;
 using Microsoft.VisualBasic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+public class UpdateChecker
+{
+    private const string GitHubRepoOwner = "dmkrtz";
+    private const string GitHubRepoName = "MXBikesSetupDuperWPF";
+
+    public async Task<bool> IsUpdateAvailable(string currentVersion)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("User-Agent", "YourAppName");
+
+            var apiUrl = $"https://api.github.com/repos/{GitHubRepoOwner}/{GitHubRepoName}/releases/latest";
+
+            try
+            {
+                var response = await client.GetStringAsync(apiUrl);
+                var releaseInfo = JsonConvert.DeserializeObject<GitHubRelease>(response);
+
+                // Compare versions (you might need to parse the version strings appropriately)
+                var latestVersion = releaseInfo.TagName;
+                return Version.Parse(currentVersion) < Version.Parse(latestVersion);
+            }
+            catch (Exception ex)
+            {
+                // Handle errors (e.g., no internet connection, GitHub API limit exceeded, etc.)
+                Console.WriteLine($"Error checking for updates: {ex.Message}");
+                return false;
+            }
+        }
+    }
+}
+
+public class GitHubRelease
+{
+    [JsonProperty("tag_name")]
+    public string TagName { get; set; }
+}
 
 namespace MXBikesSetupDuperWPF
 {
@@ -97,8 +138,30 @@ namespace MXBikesSetupDuperWPF
                                     .AddDays(version.Build).AddSeconds(version.Revision * 2);
             displayableVersion = $"{version} ({buildDate})";
 
+            CheckForUpdates(version.ToString());
+
             initPiboso();
         }
+
+        public async void CheckForUpdates(string currentVersion)
+        {
+            var updateChecker = new UpdateChecker();
+
+            if (await updateChecker.IsUpdateAvailable(currentVersion))
+            {
+                // Notify the user about the update
+                // You can show a dialog or display a notification
+                MessageBox.Show("Update available!");
+                tabControl.SelectedIndex = 1;
+                btnGetLatestVersion.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Debug.WriteLine("No update available.");
+                btnGetLatestVersion.Visibility = Visibility.Collapsed;
+            }
+        }
+
 
         void initPiboso()
         {
@@ -172,6 +235,11 @@ namespace MXBikesSetupDuperWPF
         private void label2_Loaded(object sender, RoutedEventArgs e)
         {
             label2.Content = $"Version: {displayableVersion}";
+        }
+
+        private void btnGetLatestVersion_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer", "https://github.com/dmkrtz/MXBikesSetupDuperWPF/releases/latest");
         }
 
         void kill()
