@@ -81,7 +81,7 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                         <TextBlock x:Name="lblVersionType" TextWrapping="Wrap" Margin="0,0,5,0" VerticalAlignment="Center"><Run Language="de-de" Text="Pre-Release"/></TextBlock>
                         <TextBox x:Name="lblVersion" TextWrapping="Wrap" IsReadOnly="True" Loaded="lblVersion_Loaded" Text="VERSION" Padding="10,5,10,6"/>
-                        <Button x:Name="btnGetLatestVersion" Content="Get latest version" Margin="5,0,0,0" Click="btnGetLatestVersion_Click"/>
+                        <Button x:Name="btnGetLatestVersion" Content="Get latest version" Margin="5,0,0,0" Click="btnGetLatestVersion_Click" Visibility="Collapsed"/>
                     </StackPanel>
                 </DockPanel>
             </TabItem>

@@ -160,7 +160,6 @@ namespace MXBikesSetupDuperWPF
             else
             {
                 Debug.WriteLine("No update available.");
-                btnGetLatestVersion.Visibility = Visibility.Collapsed;
             }
         }
 
