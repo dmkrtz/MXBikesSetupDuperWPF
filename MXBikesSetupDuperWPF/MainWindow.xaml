@@ -65,7 +65,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="10,0,0,0">
                                 <Label x:Name="label8" Content="Action" Margin="0,0,0,10"/>
-                                <Button x:Name="btnCopy" Content="Copy" HorizontalAlignment="Stretch" Click="btnCopy_Click"/>
+                                <Button x:Name="btnCopy" Content="Copy" HorizontalAlignment="Stretch" Click="btnCopy_Click" IsEnabled="False"/>
                             </StackPanel>
                         </DockPanel>
                     </Border>

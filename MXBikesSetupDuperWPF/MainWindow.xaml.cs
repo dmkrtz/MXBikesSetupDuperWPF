@@ -129,6 +129,8 @@ namespace MXBikesSetupDuperWPF
         string[] tracks;
         List<string> modTracks = new List<string>();
 
+        MessageBoxResult promptResult = new MessageBoxResult();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -415,12 +417,20 @@ namespace MXBikesSetupDuperWPF
         private void rdSpecificTrack_Checked(object sender, RoutedEventArgs e)
         {
             if(cbTargetTrack.Items.Count > 0)
+            {
                 cbTargetTrack.IsEnabled = true;
+                btnCopy.IsEnabled = true;
+            } else
+            {
+                cbTargetTrack.IsEnabled = false;
+                btnCopy.IsEnabled = false;
+            }
         }
 
         private void rdAllTracks_Checked(object sender, RoutedEventArgs e)
         {
             cbTargetTrack.IsEnabled = false;
+            btnCopy.IsEnabled = true;
         }
 
         void getCopyMode()
@@ -442,7 +452,6 @@ namespace MXBikesSetupDuperWPF
             if (cbTargetTrack.SelectedItem == null)
                 return;
 
-            ContentDialogResult result;
             string targetDest, targetTrack, targetBike;
 
             string selectedTargetTrack = cbTargetTrack.SelectedItem.ToString();
@@ -473,9 +482,9 @@ namespace MXBikesSetupDuperWPF
 
                     if (File.Exists(targetDest))
                     {
-                        result = (ContentDialogResult)MessageBox.Show("Setup with same name exists here already. Overwrite?", "Hold up!", MessageBoxButton.YesNo);
+                        promptResult = MessageBox.Show("Setup with same name exists here already. Overwrite?", "Hold up!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                        if (result != ContentDialogResult.Primary)
+                        if (promptResult == MessageBoxResult.No)
                         {
                             string promptMsg = "New name for the setup:";
                             tryAgain:
@@ -500,9 +509,9 @@ namespace MXBikesSetupDuperWPF
 
                     break;
                 case 1:
-                    result = (ContentDialogResult)MessageBox.Show("This action will overwrite existing setups and create new folders for every track you have installed. Do you want to continue?", "Hold up!", MessageBoxButton.YesNo);
+                    promptResult = MessageBox.Show("This action will overwrite existing setups and create new folders for every track you have installed. Do you want to continue?", "Hold up!", MessageBoxButton.YesNo, MessageBoxImage.Information);
 
-                    if (result == ContentDialogResult.Secondary)
+                    if (promptResult == MessageBoxResult.No)
                         return;
 
                     List<string> allTracks = new List<string>();
