@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MX Bikes Setup Duper" Height="485" Width="800"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+        ui:WindowHelper.UseModernWindowStyle="True" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
         UseLayoutRounding="true">
     <Grid x:Name="main">
         <TabControl x:Name="tabControl" TabStripPlacement="Left" Padding="10,0,10,5">
@@ -75,13 +75,20 @@
                 <DockPanel>
                     <ui:SimpleStackPanel Spacing="24" DockPanel.Dock="Top">
                         <TextBlock Style="{StaticResource HeaderTextBlockStyle}" ><Run Language="de-de" Text="Information"/></TextBlock>
-                        <Label x:Name="label1" Content="This app was brought to you by insane (dmkrtz)" VerticalAlignment="Center"/>
-                        <Image x:Name="image" Height="100" Width="100" Source="/logo_2021_512.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="This app was brought to you by insane (https://github.com/dmkrtz)"/>
+                        <Image x:Name="image" Height="100" Width="100" Source="/logo_2021_100.png" VerticalAlignment="Center" HorizontalAlignment="Left" UseLayoutRounding="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                     </ui:SimpleStackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                         <TextBlock x:Name="lblVersionType" TextWrapping="Wrap" Margin="0,0,5,0" VerticalAlignment="Center"><Run Language="de-de" Text="Pre-Release"/></TextBlock>
-                        <TextBox x:Name="lblVersion" TextWrapping="Wrap" IsReadOnly="True" Loaded="lblVersion_Loaded" Text="VERSION" Padding="10,5,10,6"/>
+                        <TextBox x:Name="lblVersion" TextWrapping="Wrap" IsReadOnly="True" Loaded="lblVersion_Loaded" Text="VERSION" Padding="10,5,10,6" VerticalAlignment="Center"/>
                         <Button x:Name="btnGetLatestVersion" Content="Get latest version" Margin="5,0,0,0" Click="btnGetLatestVersion_Click" Visibility="Collapsed"/>
+                        <Button x:Name="imgGithub" Height="32" Width="32" Margin="5,0,0,0" ToolTip="Visit the Github repo!" Cursor="Hand" Click="imgGithub_Click">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Image UseLayoutRounding="True" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/github.png"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </StackPanel>
                 </DockPanel>
             </TabItem>

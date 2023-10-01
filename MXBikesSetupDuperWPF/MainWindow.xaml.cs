@@ -238,6 +238,11 @@ namespace MXBikesSetupDuperWPF
             lblVersion.Text = displayableVersion;
         }
 
+        private void imgGithub_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer", "https://github.com/dmkrtz/MXBikesSetupDuperWPF");
+        }
+
         void kill()
         {
             System.Environment.Exit(1);
@@ -502,7 +507,12 @@ namespace MXBikesSetupDuperWPF
                         }
                     }
 
-                    File.Copy(selectedSetupPath, @targetDest, true);
+                    if (File.Exists(selectedSetupPath))
+                        File.Copy(selectedSetupPath, @targetDest, true);
+                    else
+                    {
+                        MessageBox.Show("The setup file couldn't be found. Operation aborted.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
+                    }
 
                     MessageBox.Show($"Setup copied to {selectedTargetTrack}!", "Done!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -539,7 +549,12 @@ namespace MXBikesSetupDuperWPF
                         if (!Directory.Exists(targetDest))
                             Directory.CreateDirectory(@targetDest);
 
-                        File.Copy(selectedSetupPath, @Path.Join(targetDest, selectedSetup + ".stp"), true);
+                        if(File.Exists(selectedSetupPath))
+                            File.Copy(selectedSetupPath, @Path.Join(targetDest, selectedSetup + ".stp"), true);
+                        else
+                        {
+                            MessageBox.Show("The setup file couldn't be found. Operation aborted.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
+                        }
                     }
 
                     MessageBox.Show("Setup copied to all tracks!", "Done!", MessageBoxButton.OK, MessageBoxImage.Information);
